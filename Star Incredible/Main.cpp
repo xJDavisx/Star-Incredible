@@ -15,15 +15,14 @@ const char *WINDOW_TITLE = "Star Incredible";
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-const char* DOOMGUY_BITMAP_FILE_NAME = "resources/player-pet.png";
-const char* DOOMGUY2_BITMAP_FILE_NAME = "plate3.bmp";
-const float DOOMGUY_START_X = 250.0f;
-const float DOOMGUY_START_Y = 150.0f;
-const int DOOMGUY_IMAGE_X = 0;
-const int DOOMGUY_IMAGE_Y = 0;
-const int DOOMGUY_IMAGE_WIDTH = 160;
-const int DOOMGUY_IMAGE_HEIGHT = 160;
-const float DOOMGUY_SPEED = 100.0;
+const char* PLAYER_SHIP_FILENAME = "resources/player-ship.png";
+const float PLAYER_START_X = 0;
+const float PLAYER_START_Y = 500;
+const int PLAYER_IMAGE_X = 0;
+const int PLAYER_IMAGE_Y = 0;
+const int PLAYER_IMAGE_WIDTH = 50;
+const int PLAYER_IMAGE_HEIGHT = 100;
+const float PLAYER_SPEED = 300.0;
 
 bool g_gameIsRunning = true;
 Player* player_ship = NULL;
@@ -36,16 +35,16 @@ void handleKeyboardInput();
 int main(int argc, char *args[]){
     
     g_graphics = new SDLGraphics(800, 600, WINDOW_TITLE);
-    SDL_Surface *germ = g_graphics->loadPNG("resources/germ.png");
+    SDL_Surface *germ = g_graphics->loadPNG("resources/player-ship.png");
     g_graphics->setBackground("resources/background.png");
     g_input = new Input();
 
     player_ship = new Player(g_graphics,
-        DOOMGUY_IMAGE_X, DOOMGUY_IMAGE_Y,
-        DOOMGUY_IMAGE_WIDTH, DOOMGUY_IMAGE_HEIGHT,
-        DOOMGUY_BITMAP_FILE_NAME,
-        DOOMGUY_START_X, DOOMGUY_START_Y,
-        DOOMGUY_SPEED, g_input);
+        PLAYER_IMAGE_X, PLAYER_IMAGE_Y,
+        PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT,
+        PLAYER_SHIP_FILENAME,
+        PLAYER_START_X, PLAYER_START_Y,
+        PLAYER_SPEED, g_input);
 
     g_timer = new Timer();
 
