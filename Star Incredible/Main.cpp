@@ -4,12 +4,13 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
-//Frank's commit
 #include "SDLGraphics.h"
 
 using namespace std;
 
 const char *WINDOW_TITLE = "Star Incredible";
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
 
 bool g_gameIsRunning = true;
 SDLGraphics *g_graphics;
