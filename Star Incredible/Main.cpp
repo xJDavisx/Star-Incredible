@@ -36,7 +36,6 @@ void handleKeyboardInput();
 int main(int argc, char *args[]){
     
     g_graphics = new SDLGraphics(800, 600, WINDOW_TITLE);
-    SDL_Surface *germ = g_graphics->loadPNG("resources/player-ship.png");
     g_graphics->setBackground("resources/background.png");
     g_input = new Input();
 
