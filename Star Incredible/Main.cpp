@@ -52,13 +52,31 @@ int main(int argc, char *args[]){
     while (g_gameIsRunning){
 
         float deltaTime = g_timer->timeSinceLastFrame();
-        
+
+        // Handle input
         g_input->readInput();
+
+        if (g_input->windowClosed())
+        {
+            g_gameIsRunning = false;
+        }
+
         handleKeyboardInput();
+
+
+        // Draw the scene
         g_graphics->beginScene();
+
+        /*g_graphics->drawText("Star Fucking Incredible",
+            12, 250, 100,
+            200, 0, 0,
+            0, 0, 0);*/
+        
+        // Handle game logic
         player_ship->update(deltaTime);
+
+
         g_graphics->endScene();
-        handleKeyboardInput();
         
         }
 

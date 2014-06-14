@@ -3,7 +3,7 @@
 Player::Player(SDLGraphics* graphics,
     int imageX, int imageY,
     int width, int height,
-    const char* bitmapFileName,
+    const char* filename,
     float x, float y,
     float maxSpeed, Input* input) : m_graphics(graphics),
     m_imageX(imageX), m_imageY(imageY),
@@ -13,7 +13,7 @@ Player::Player(SDLGraphics* graphics,
     m_currentSpeedX(0.0f){
 
     g_input = input;
-    m_bitmap = m_graphics->loadPNG(bitmapFileName);
+    m_bitmap = m_graphics->loadPNG(filename);
 
 }
 

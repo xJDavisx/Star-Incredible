@@ -13,7 +13,7 @@ public:
     Player(SDLGraphics *graphics,
         int imageX, int imageY,
         int width, int height,
-        const char *bitmapFileName,
+        const char *filename,
         float x, float y,
         float maxSpeed, Input *g_input);
 
