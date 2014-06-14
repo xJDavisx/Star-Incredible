@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Input.h"
 #include "Timer.h"
+#include "Enemy.h"
 
 using namespace std;
 

@@ -76,26 +76,26 @@ void Player::handleKeyboardInput(){
     bool* keysHeld = g_input->getInput();
     bool isKeyHeld = false;
 
-    if (keysHeld[SDLK_LEFT]){
+    if (keysHeld[SDLK_a]){
 
         moveLeft();
         isKeyHeld = true;
 
     }
-    if (keysHeld[SDLK_UP]){
+    if (keysHeld[SDLK_w]){
 
         moveUp();
         isKeyHeld = true;
 
     }
-    if (keysHeld[SDLK_DOWN]){
+    if (keysHeld[SDLK_s]){
 
         moveDown();
         isKeyHeld = true;
 
     }
 
-    if (keysHeld[SDLK_RIGHT]){
+    if (keysHeld[SDLK_d]){
 
         moveRight();
         isKeyHeld = true;
