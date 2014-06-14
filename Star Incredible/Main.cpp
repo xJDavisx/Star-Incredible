@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+//Frank's commit
 #include "SDLGraphics.h"
 
 using namespace std;
@@ -33,7 +34,6 @@ int main(int argc, char *args[]){
         g_gameIsRunning = false;
         
         }
-        //you can call now
 
     delete g_graphics;
     
