@@ -16,7 +16,7 @@ bool g_gameIsRunning = true;
 SDLGraphics *g_graphics;
 
 int main(int argc, char *args[]){
-
+	//Jesse Changed this
     g_graphics = new SDLGraphics(800, 600, WINDOW_TITLE);
     SDL_Surface *germ = g_graphics->loadPNG("resources/germ.png");
     g_graphics->setBackground("resources/background.png");
