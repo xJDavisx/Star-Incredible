@@ -15,7 +15,7 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(SDLGraphics* graphics, int imageX, int imageY, int width, int height, const char* filename, float maxSpeed)
+Enemy::Enemy(SDLGraphics* graphics, int imageX, int imageY, int width, int height, const char* filename, int maxSpeed)
 {
     eGraphics = graphics;
     eImageX = imageX;
@@ -23,10 +23,13 @@ Enemy::Enemy(SDLGraphics* graphics, int imageX, int imageY, int width, int heigh
     eWidth = width;
     eHeight = height;
     eMaxSpeed = maxSpeed;
-    eCurrentSpeedX = 0.0f;
+    eCurrentSpeedX = 100;
+    eCurrentSpeedY = 100;
     eBitmap = eGraphics->loadPNG(filename);
-    eX = 0;
+    eX =  rand() % 800;
     eY = 0;
+    eIsAlive = true;
+    eHealth = 100;
 
 }
 
@@ -40,20 +43,31 @@ Enemy::~Enemy()
 void Enemy::update(float deltaTime)
 {
 
-    eX += eCurrentSpeedX * deltaTime;
-    eY += eCurrentSpeedY * deltaTime;
     if (eHealth <= 0.0)
     {
         eIsAlive = false;
     }
     if (eIsAlive)
     {
-        //AI Code
+        int i = rand() % 2;
+        if (i)
+        {
+            eX += rand() % 100 * deltaTime;
+        }
+        else
+        {
+            eX -= rand() % 100 * deltaTime;
+        }
+        eY += rand() % eMaxSpeed * deltaTime;
     }
     else
     {
         //Death Animation
         //Delete Object
+    }
+    if (eY > 600)
+    {
+        eIsAlive = false;
     }
     draw();
 

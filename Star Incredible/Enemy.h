@@ -16,7 +16,7 @@ class Enemy
               int imageX, int imageY,
               int width, int height,
               const char *filename,
-              float maxSpeed);
+              int maxSpeed);
 
         ~Enemy();
 
@@ -42,9 +42,9 @@ class Enemy
         float eImageX;
         float eImageY;
 
-        float eMaxSpeed;
-        float eCurrentSpeedX;
-        float eCurrentSpeedY;
+        int eMaxSpeed;
+        int eCurrentSpeedX;
+        int eCurrentSpeedY;
 
         float eHealth;
 
