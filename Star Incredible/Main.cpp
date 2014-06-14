@@ -24,32 +24,47 @@ const int PLAYER_IMAGE_Y = 0;
 const int PLAYER_IMAGE_WIDTH = 50;
 const int PLAYER_IMAGE_HEIGHT = 100;
 const float PLAYER_SPEED = 300.0;
+const int ENEMY_CAPACITY = 1000;
 
 bool g_gameIsRunning = true;
 Player* player_ship = NULL;
 SDLGraphics* g_graphics = NULL;
 Input* g_input = NULL;
 Timer* g_timer = NULL;
+Enemy *enemies;
 
 void handleKeyboardInput();
 
-int main(int argc, char *args[]){
-    
+int main(int argc, char *args[])
+{
+
+    enemies = new Enemy[ENEMY_CAPACITY];
     g_graphics = new SDLGraphics(800, 600, WINDOW_TITLE);
-    SDL_Surface *germ = g_graphics->loadPNG("resources/player-ship.png");
     g_graphics->setBackground("resources/background.png");
     g_input = new Input();
 
     player_ship = new Player(g_graphics,
-        PLAYER_IMAGE_X, PLAYER_IMAGE_Y,
-        PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT,
-        PLAYER_SHIP_FILENAME,
-        PLAYER_START_X, PLAYER_START_Y,
-        PLAYER_SPEED, g_input);
+                             PLAYER_IMAGE_X, PLAYER_IMAGE_Y,
+                             PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT,
+                             PLAYER_SHIP_FILENAME,
+                             Point(PLAYER_START_X,PLAYER_START_Y),
+                             PLAYER_SPEED, g_input);
+
+    /*for (int i = 0; i < 5; i++)
+    {
+        enemies[i] = Enemy(g_graphics,
+                           PLAYER_IMAGE_X, PLAYER_IMAGE_Y,
+                           PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT,
+                           PLAYER_SHIP_FILENAME,
+                           PLAYER_START_X, PLAYER_START_Y,
+                           PLAYER_SPEED);
+    }*/
+
 
     g_timer = new Timer();
 
-    while (g_gameIsRunning){
+    while (g_gameIsRunning)
+    {
 
         float deltaTime = g_timer->timeSinceLastFrame();
 
@@ -67,30 +82,28 @@ int main(int argc, char *args[]){
         // Draw the scene
         g_graphics->beginScene();
 
-        /*g_graphics->drawText("Star Fucking Incredible",
-            12, 250, 100,
-            200, 0, 0,
-            0, 0, 0);*/
-        
+
         // Handle game logic
         player_ship->update(deltaTime);
 
 
         g_graphics->endScene();
-        
-        }
 
-    delete g_graphics;
-    
-    return 0;
-    
     }
 
-void handleKeyboardInput(){
+    delete g_graphics;
+
+    return 0;
+
+}
+
+void handleKeyboardInput()
+{
 
     bool* keysHeld = g_input->getInput();
 
-    if (keysHeld[SDLK_ESCAPE]){
+    if (keysHeld[SDLK_ESCAPE])
+    {
 
         g_gameIsRunning = false;
 

@@ -1,20 +1,22 @@
 #include "SDLGraphics.h"
 
-SDLGraphics::SDLGraphics(int windowWidth, int windowHeight, 
-                         const char *windowTitle){
+SDLGraphics::SDLGraphics(int windowWidth, int windowHeight,
+                         const char *windowTitle)
+{
 
     SDL_Init(SDL_INIT_VIDEO);
 
     TTF_Init();
 
     m_screen = SDL_SetVideoMode(windowWidth, windowHeight,
-        0, SDL_SWSURFACE | SDL_DOUBLEBUF);
+                                0, SDL_SWSURFACE | SDL_DOUBLEBUF);
 
     SDL_WM_SetCaption(windowTitle, 0);
 
 }
 
-SDLGraphics::~SDLGraphics(){
+SDLGraphics::~SDLGraphics()
+{
 
     SDL_FreeSurface(background);
     SDL_FreeSurface(m_screen);
@@ -23,7 +25,8 @@ SDLGraphics::~SDLGraphics(){
 
 }
 
-SDL_Surface *SDLGraphics::loadPNG(const char *filename){
+SDL_Surface *SDLGraphics::loadPNG(const char *filename)
+{
 
     SDL_Surface *image = IMG_Load(filename);
 
@@ -39,35 +42,40 @@ void SDLGraphics::setBackground(const char *filename)
     background = loadPNG(filename);
 }
 
-SDL_Surface *SDLGraphics::getScreen(){
-    
-    return m_screen;
-    
-    }
+SDL_Surface *SDLGraphics::getScreen()
+{
 
-void SDLGraphics::closeImage(SDL_Surface *image){
+    return m_screen;
+
+}
+
+void SDLGraphics::closeImage(SDL_Surface *image)
+{
 
     SDL_FreeSurface(image);
 
 }
 
-void SDLGraphics::beginScene(){
+void SDLGraphics::beginScene()
+{
 
     SDL_BlitSurface(background, NULL, m_screen, NULL);
 
 }
 
 //this displays the screen
-void SDLGraphics::endScene(){
+void SDLGraphics::endScene()
+{
 
     SDL_Flip(m_screen);
 
 }
 
 void SDLGraphics::drawSprite(SDL_Surface *imageSurface,
-    int srcX, int srcY,
-    int dstX, int dstY,
-    int width, int height){
+                             int srcX, int srcY,
+                             int dstX, int dstY,
+                             int width, int height)
+{
 
     SDL_Rect srcRect;
     srcRect.x = srcX;

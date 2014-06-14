@@ -5,47 +5,47 @@
 
 #include "SDLGraphics.h"
 #include "Input.h"
+#include "Point.h"
 
-class Player{
 
-public:
-    //this class holds a pointer to the graphics object but will not destroy it
-    Player(SDLGraphics *graphics,
-        int imageX, int imageY,
-        int width, int height,
-        const char *filename,
-        float x, float y,
-        float maxSpeed, Input *g_input);
+class Player
+{
 
-    ~Player();
+    public:
+        //this class holds a pointer to the graphics object but will not destroy it
+        Player(SDLGraphics *graphics,
+               int imageX, int imageY,
+               int width, int height,
+               const char *filename,
+               Point location,
+               float maxSpeed, Input *g_input);
 
-    //this must be called each frame
-    void update(float deltaTime);
+        ~Player();
 
-    void draw();
+        //this must be called each frame
+        void update(float deltaTime);
 
-    void moveLeft();
-    void moveRight();
-    void moveUp();
-    void moveDown();
-    void stopMoving();
-    void handleKeyboardInput();
+        void draw();
 
-private:
-    SDLGraphics *m_graphics;
-    SDL_Surface *m_bitmap;
-    Input *g_input;
+        Point getLocation();
 
-    float m_x;
-    float m_y;
-    float m_width;
-    float m_height;
+        void handleKeyboardInput();
 
-    float m_imageX;
-    float m_imageY;
+    private:
+        SDLGraphics *pGraphics;
+        SDL_Surface *pBitmap;
+        Input *pInput;
 
-    float m_maxSpeed;
-    float m_currentSpeedX;
-    float m_currentSpeedY;
+        float pX;
+        float pY;
+        float pWidth;
+        float pHeight;
+
+        float pImageX;
+        float pImageY;
+
+        float pMaxSpeed;
+        float pCurrentSpeedX;
+        float pCurrentSpeedY;
 
 };

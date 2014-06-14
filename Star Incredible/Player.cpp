@@ -1,109 +1,96 @@
 #include "Player.h"
 
 Player::Player(SDLGraphics* graphics,
-    int imageX, int imageY,
-    int width, int height,
-    const char* filename,
-    float x, float y,
-    float maxSpeed, Input* input) : m_graphics(graphics),
-    m_imageX(imageX), m_imageY(imageY),
-    m_width(width), m_height(height),
-    m_x(x), m_y(y),
-    m_maxSpeed(maxSpeed),
-    m_currentSpeedX(0.0f){
+               int imageX, int imageY,
+               int width, int height,
+               const char* filename,
+               Point location,
+               float maxSpeed, Input* input) : pGraphics(graphics),
+    pImageX(imageX), pImageY(imageY),
+    pWidth(width), pHeight(height),
+    pMaxSpeed(maxSpeed),
+    pCurrentSpeedX(0.0f)
+{
 
-    g_input = input;
-    m_bitmap = m_graphics->loadPNG(filename);
-
-}
-
-Player::~Player(){
-
-    m_graphics->closeImage(m_bitmap);
+    pX = location.pX;
+    pY = location.Y;
+    pInput = input;
+    pBitmap = pGraphics->loadPNG(filename);
 
 }
 
-void Player::update(float deltaTime){
+Player::~Player()
+{
+
+    pGraphics->closeImage(pBitmap);
+
+}
+
+void Player::update(float deltaTime)
+{
 
     handleKeyboardInput();
-    m_x += m_currentSpeedX * deltaTime;
-    m_y += m_currentSpeedY * deltaTime;
+    pX += pCurrentSpeedX * deltaTime;
+    pY += pCurrentSpeedY * deltaTime;
     draw();
 
 }
 
-void Player::draw(){
+void Player::draw()
+{
 
-    m_graphics->drawSprite(m_bitmap,
-        m_imageX, m_imageY,
-        m_x, m_y,
-        m_width, m_height);
-
-}
-
-void Player::moveLeft(){
-
-    m_currentSpeedX = -m_maxSpeed;
+    pGraphics->drawSprite(pBitmap,
+                          pImageX, pImageY,
+                          pX, pY,
+                          pWidth, pHeight);
 
 }
 
-void Player::moveRight(){
-
-    m_currentSpeedX = m_maxSpeed;
-
-}
-void Player::moveUp(){
-
-    m_currentSpeedY = -m_maxSpeed;
-
+Point Player::getLocation()
+{
+    return Point(pX, pY);
 }
 
-void Player::moveDown(){
+void Player::handleKeyboardInput()
+{
 
-    m_currentSpeedY = m_maxSpeed;
+    bool* keysHeld = pInput->getInput();
 
-}
-
-void Player::stopMoving(){
-
-    m_currentSpeedX = 0.0f;
-    m_currentSpeedY = 0.0f;
-
-}
-
-void Player::handleKeyboardInput(){
-
-    bool* keysHeld = g_input->getInput();
-    bool isKeyHeld = false;
-
-    if (keysHeld[SDLK_a]){
-
-        moveLeft();
-        isKeyHeld = true;
+    if (keysHeld[SDLK_a])
+    {
+        //Move Left
+        pCurrentSpeedX = -pMaxSpeed;
 
     }
-    if (keysHeld[SDLK_w]){
-
-        moveUp();
-        isKeyHeld = true;
+    if (keysHeld[SDLK_w])
+    {
+        //Move Up
+        pCurrentSpeedY = -pMaxSpeed;
 
     }
-    if (keysHeld[SDLK_s]){
-
-        moveDown();
-        isKeyHeld = true;
+    if (keysHeld[SDLK_s])
+    {
+        //Move Down
+        pCurrentSpeedY = pMaxSpeed;
 
     }
 
-    if (keysHeld[SDLK_d]){
-
-        moveRight();
-        isKeyHeld = true;
+    if (keysHeld[SDLK_d])
+    {
+        //Move Right
+        pCurrentSpeedX = pMaxSpeed;
 
     }
-    if (!isKeyHeld){
+    if (!keysHeld[SDLK_w] && !keysHeld[SDLK_s])
+    {
+        //Check if Up and Down keys are not held. If true, stop all vertical movment.
+        pCurrentSpeedY = 0.0f;
 
-        stopMoving();
+    }
+    if (!keysHeld[SDLK_a] && !keysHeld[SDLK_d])
+    {
+        //Check if Left and Right keys are not held. If true, stop all horizontal movment.
+        pCurrentSpeedX = 0.0f;
 
     }
 

@@ -1,11 +1,13 @@
 #include "Input.h"
 
-Input::Input(){
+Input::Input()
+{
 
     m_windowClosed = false;
 
     //make sure all the keys are set to false
-    for (int i = 0; i < 323; i++){
+    for (int i = 0; i < 323; i++)
+    {
 
         m_keysHeld[i] = false;
 
@@ -13,27 +15,33 @@ Input::Input(){
 
 }
 
-Input::~Input(){
+Input::~Input()
+{
 
 }
 
-void Input::readInput(){
+void Input::readInput()
+{
 
-    if (SDL_PollEvent(&m_event)){
+    if (SDL_PollEvent(&m_event))
+    {
 
-        if (m_event.type == SDL_QUIT){
+        if (m_event.type == SDL_QUIT)
+        {
 
             m_windowClosed = true;
 
         }
 
-        if (m_event.type == SDL_KEYDOWN){
+        if (m_event.type == SDL_KEYDOWN)
+        {
 
             m_keysHeld[m_event.key.keysym.sym] = true;
 
         }
 
-        if (m_event.type == SDL_KEYUP){
+        if (m_event.type == SDL_KEYUP)
+        {
 
             m_keysHeld[m_event.key.keysym.sym] = false;
 
@@ -43,13 +51,15 @@ void Input::readInput(){
 
 }
 
-bool *Input::getInput(){
+bool *Input::getInput()
+{
 
     return m_keysHeld;
 
 }
 
-bool Input::windowClosed(){
+bool Input::windowClosed()
+{
 
     return m_windowClosed;
 
