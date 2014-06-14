@@ -63,7 +63,7 @@ void Enemy::update(float deltaTime)
     else
     {
         //Death Animation
-        //Delete Objectyuk
+        //Delete Objectyuk - My Change
     }
     if (eY > 600)
     {
