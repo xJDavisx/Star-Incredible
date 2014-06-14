@@ -4,9 +4,7 @@
 #include <string>
 
 #include "SDLGraphics.h"
-
-#ifndef Player_H
-#define Player_H
+#include "Input.h"
 
 class Player{
 
@@ -15,10 +13,9 @@ public:
     Player(SDLGraphics *graphics,
         int imageX, int imageY,
         int width, int height,
-        int transparentR, int transparentG, int transparentB,
-        const char *bitmapFileName,
+        const char *filename,
         float x, float y,
-        float maxSpeed);
+        float maxSpeed, Input *g_input);
 
     ~Player();
 
@@ -29,11 +26,15 @@ public:
 
     void moveLeft();
     void moveRight();
+    void moveUp();
+    void moveDown();
     void stopMoving();
+    void handleKeyboardInput();
 
 private:
     SDLGraphics *m_graphics;
     SDL_Surface *m_bitmap;
+    Input *g_input;
 
     float m_x;
     float m_y;
@@ -45,7 +46,6 @@ private:
 
     float m_maxSpeed;
     float m_currentSpeedX;
+    float m_currentSpeedY;
 
 };
-
-#endif
