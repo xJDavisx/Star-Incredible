@@ -16,7 +16,7 @@ const char *WINDOW_TITLE = "Star Incredible";
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-const char* PLAYER_SHIP_FILENAME = "resources/player-ship.png";//the password is LUL
+const char *PLAYER_SHIP_FILENAME = "resources/player-ship1.png";
 const float PLAYER_START_X = 0;
 const float PLAYER_START_Y = 500;
 const int PLAYER_IMAGE_X = 0;
@@ -25,15 +25,14 @@ const int PLAYER_IMAGE_WIDTH = 50;
 const int PLAYER_IMAGE_HEIGHT = 100;
 const float PLAYER_SPEED = 300.0;
 
-
-const char* ENEMY_SHIP_FILENAME = "resources/enemy-ship.png";
+const char *ENEMY_SHIP_FILENAME = "resources/enemy-ship.png";
 const int ENEMY_IMAGE_X = 0;
 const int ENEMY_IMAGE_Y = 0;
 const int ENEMY_IMAGE_WIDTH = 50;
 const int ENEMY_IMAGE_HEIGHT = 100;
 const int ENEMY_SPEED = 20;
 const int ENEMY_CAPACITY = 100;
-//hkjhkjhk
+
 bool g_gameIsRunning = true;
 Player *player_ship = NULL;
 SDLGraphics *g_graphics = NULL;
@@ -66,7 +65,6 @@ int main(int argc, char *args[])
                            ENEMY_SHIP_FILENAME,
                            ENEMY_SPEED);
     }
-
 
     g_timer = new Timer();
 

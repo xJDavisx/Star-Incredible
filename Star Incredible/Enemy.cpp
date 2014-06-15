@@ -15,7 +15,7 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(SDLGraphics* graphics, int imageX, int imageY, int width, int height, const char* filename, int maxSpeed)
+Enemy::Enemy(SDLGraphics * graphics, int imageX, int imageY, int width, int height, const char *filename, int maxSpeed)
 {
     eGraphics = graphics;
     eImageX = imageX;
@@ -63,7 +63,7 @@ void Enemy::update(float deltaTime)
     else
     {
         //Death Animation
-        //Delete Objectyuk - My Change
+        //Delete Object
     }
     if (eY > 600)
     {

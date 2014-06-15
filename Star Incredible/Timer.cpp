@@ -23,11 +23,10 @@ float Timer::timeSinceCreation()
 
 float Timer::timeSinceLastFrame()
 {
-
     float thisTime = timeSinceCreation();
     float deltaTime = thisTime - m_timeOfLastCall;
     m_timeOfLastCall = thisTime;
 
     return deltaTime;
 
-}
+} 
