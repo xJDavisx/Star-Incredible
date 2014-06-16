@@ -31,7 +31,7 @@ const int ENEMY_IMAGE_Y = 0;
 const int ENEMY_IMAGE_WIDTH = 50;
 const int ENEMY_IMAGE_HEIGHT = 100;
 const int ENEMY_SPEED = 20;
-const int ENEMY_CAPACITY = 100;
+const int ENEMY_CAPACITY = 50;
 
 bool g_gameIsRunning = true;
 Player *player_ship = NULL;
@@ -44,7 +44,6 @@ void handleKeyboardInput();
 
 int main(int argc, char *args[])
 {
-
     enemies = new Enemy[ENEMY_CAPACITY + 1];
     g_graphics = new SDLGraphics(800, 600, WINDOW_TITLE);
     g_graphics->setBackground("resources/background.png");
@@ -70,7 +69,6 @@ int main(int argc, char *args[])
 
     while (g_gameIsRunning)
     {
-
         float deltaTime = g_timer->timeSinceLastFrame();
 
         // Handle input
@@ -83,10 +81,8 @@ int main(int argc, char *args[])
 
         handleKeyboardInput();
 
-
         // Draw the scene
         g_graphics->beginScene();
-
 
         // Handle game logic
         player_ship->update(deltaTime);
@@ -96,24 +92,19 @@ int main(int argc, char *args[])
         }
 
         g_graphics->endScene();
-
     }
+
     delete g_graphics;
 
     return 0;
-
 }
 
 void handleKeyboardInput()
 {
-
     bool* keysHeld = g_input->getInput();
 
     if (keysHeld[SDLK_ESCAPE])
     {
-
         g_gameIsRunning = false;
-
     }
-
 }

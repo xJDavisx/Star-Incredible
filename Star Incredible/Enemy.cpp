@@ -10,12 +10,13 @@
 */
 
 #include "Enemy.h"
+#include <time.h>
 
 Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(SDLGraphics * graphics, int imageX, int imageY, int width, int height, const char *filename, int maxSpeed)
+Enemy::Enemy(SDLGraphics *graphics, int imageX, int imageY, int width, int height, const char *filename, int maxSpeed)
 {
     eGraphics = graphics;
     eImageX = imageX;
@@ -27,7 +28,7 @@ Enemy::Enemy(SDLGraphics * graphics, int imageX, int imageY, int width, int heig
     eCurrentSpeedY = 100;
     eBitmap = eGraphics->loadPNG(filename);
     eX =  rand() % 800;
-    eY = 0;
+    eY = (rand() % 2400) - 3200;//enemies spawn spread out, and at least out of player's view
     eIsAlive = true;
     eHealth = 100;
 
@@ -47,30 +48,45 @@ void Enemy::update(float deltaTime)
     {
         eIsAlive = false;
     }
+
     if (eIsAlive)
     {
-        int i = rand() % 2;
-        if (i)
+        srand(time(NULL));
+        
+        if (rand() % 2)
         {
             eX += rand() % 100 * deltaTime;
         }
+        
         else
         {
             eX -= rand() % 100 * deltaTime;
         }
-        eY += rand() % eMaxSpeed * deltaTime;
+        
+        eY += rand() % eMaxSpeed * 60 * deltaTime;
+
+        //enemies collide with edges of screen
+        if (eX > 750)
+        {
+            eX = 750;
+        }
+
+        if (eX < 0)
+        {
+            eX = 0;
+        }
     }
     else
     {
         //Death Animation
         //Delete Object
     }
+
     if (eY > 600)
     {
         eIsAlive = false;
     }
     draw();
-
 }
 
 
@@ -81,10 +97,8 @@ void Enemy::takeDamage(float dmgAmount)
 
 void Enemy::draw()
 {
-
     eGraphics->drawSprite(eBitmap,
                           eImageX, eImageY,
                           eX, eY,
                           eWidth, eHeight);
-
 }

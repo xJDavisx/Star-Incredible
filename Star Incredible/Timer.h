@@ -21,5 +21,4 @@ class Timer
     private:
         // This stores the time of that last call to timeSinceLastFrame().
         float m_timeOfLastCall;
-
 };

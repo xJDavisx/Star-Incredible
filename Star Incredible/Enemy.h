@@ -8,7 +8,6 @@
 
 class Enemy
 {
-
     public:
         Enemy();
         //this class holds a pointer to the graphics object but will not destroy it
@@ -29,7 +28,6 @@ class Enemy
 
         //static Enemy[] AddEnemy(Enemy[]);
 
-
     private:
         SDLGraphics *eGraphics;
         SDL_Surface *eBitmap;
@@ -49,5 +47,4 @@ class Enemy
         float eHealth;
 
         bool eIsAlive;
-
 };

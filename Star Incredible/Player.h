@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "Point.h"
 
+using namespace std;
 
 class Player
 {
