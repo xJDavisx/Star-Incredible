@@ -1,4 +1,3 @@
-#pragma once
 #include "Timer.h"
 
 Timer::Timer() : m_timeOfLastCall(0.0f)
@@ -24,4 +23,4 @@ float Timer::timeSinceLastFrame()
     m_timeOfLastCall = thisTime;
 
     return deltaTime;
-} 
+}
