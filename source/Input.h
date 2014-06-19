@@ -1,9 +1,8 @@
+#pragma once
+
 #include <SDL.h>
 #include <iostream>
 #include <string>
-
-#ifndef INPUT_H
-#define INPUT_H
 
 class Input
 {
@@ -24,7 +23,4 @@ class Input
         SDL_Event m_event;
         bool m_keysHeld[323];
         bool m_windowClosed;
-
 };
-
-#endif

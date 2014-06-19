@@ -6,19 +6,17 @@
 
 class Timer
 {
-        // Methods
     public:
         Timer();
         ~Timer();
 
-        // This returns the number of milliseconds since this object was created.
+        //returns the number of milliseconds since object was created
         float timeSinceCreation();
 
-        // This method returns the number of milliseconds that have passed since it was last called.
+        //returns number of milliseconds since last called
         float timeSinceLastFrame();
 
-        // Data
     private:
-        // This stores the time of that last call to timeSinceLastFrame().
+        //stores the time of that last call to timeSinceLastFrame()
         float m_timeOfLastCall;
 };

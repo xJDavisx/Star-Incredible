@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SDL.h>
 #include <iostream>
 #include <string>
@@ -11,7 +12,6 @@ using namespace std;
 
 class Player
 {
-
     public:
         //this class holds a pointer to the graphics object but will not destroy it
         Player(SDLGraphics *graphics,
@@ -48,5 +48,4 @@ class Player
         float pMaxSpeed;
         float pCurrentSpeedX;
         float pCurrentSpeedY;
-
 };

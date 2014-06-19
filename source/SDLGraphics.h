@@ -1,16 +1,13 @@
+#pragma once
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
 #include <iostream>
 
-#ifndef SDLGRAPHICS_H
-#define SDLGRAPHICS_H
-
 class SDLGraphics
 {
-
-        //Methods
     public:
         //this creates a window and initializes the graphics object
         //the last three parameters are the desired background color
@@ -39,7 +36,6 @@ class SDLGraphics
 
         void setBackgroundColor(int r, int g, int b);
 
-        //data
     private:
         SDL_Surface *m_screen;
         SDL_Surface *background;
@@ -48,5 +44,3 @@ class SDLGraphics
         int m_backgroundColorGreen;
         int m_backgroundColorBlue;
 };
-
-#endif

@@ -34,22 +34,22 @@ void Player::update(float deltaTime)
     {
         pX = 750;
     }
-    
+
     if (pX < 0)
     {
         pX = 0;
     }
-    
+
     if (pY > 550)
     {
         pY = 550;
     }
-    
+
     if (pY < 0)
     {
         pY = 0;
     }
-    
+
     draw();
 }
 
@@ -72,37 +72,35 @@ void Player::handleKeyboardInput()
 
     if (keysHeld[SDLK_a])
     {
-        //Move Left
+        //move left
         pCurrentSpeedX = -pMaxSpeed;
     }
-    
+
     if (keysHeld[SDLK_w])
     {
-        //Move Up
+        //move up
         pCurrentSpeedY = -pMaxSpeed;
     }
-    
+
     if (keysHeld[SDLK_s])
     {
-        //Move Down
+        //move down
         pCurrentSpeedY = pMaxSpeed;
     }
 
     if (keysHeld[SDLK_d])
     {
-        //Move Right
+        //move right
         pCurrentSpeedX = pMaxSpeed;
     }
 
     if (!keysHeld[SDLK_w] && !keysHeld[SDLK_s])
     {
-        //Check if Up and Down keys are not held. If true, stop all vertical movment.
         pCurrentSpeedY = 0.0f;
     }
-    
+
     if (!keysHeld[SDLK_a] && !keysHeld[SDLK_d])
     {
-        //Check if Left and Right keys are not held. If true, stop all horizontal movment.
         pCurrentSpeedX = 0.0f;
     }
 }

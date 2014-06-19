@@ -10,7 +10,8 @@ class Enemy
 {
     public:
         Enemy();
-        //this class holds a pointer to the graphics object but will not destroy it
+
+        //holds a pointer to the graphics object but will not destroy it
         Enemy(SDLGraphics *graphics,
               int imageX, int imageY,
               int width, int height,
