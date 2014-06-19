@@ -31,7 +31,7 @@ const int ENEMY_IMAGE_Y = 0;
 const int ENEMY_IMAGE_WIDTH = 50;
 const int ENEMY_IMAGE_HEIGHT = 100;
 const int ENEMY_SPEED = 20;
-const int ENEMY_CAPACITY = 50000;
+const int ENEMY_CAPACITY = 50;
 
 bool g_gameIsRunning = true;
 Player *player_ship = NULL;
