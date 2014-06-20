@@ -3,7 +3,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-//change
 
 #include "SDLGraphics.h"
 #include "Player.h"
