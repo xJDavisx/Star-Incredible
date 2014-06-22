@@ -27,6 +27,8 @@ class Enemy
 
         void draw();
 
+        void setPosition(int x, int y);
+
         //static Enemy[] AddEnemy(Enemy[]);
 
     private:

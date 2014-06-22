@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <time.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -23,14 +24,14 @@ const int PLAYER_IMAGE_X = 0;
 const int PLAYER_IMAGE_Y = 0;
 const int PLAYER_IMAGE_WIDTH = 50;
 const int PLAYER_IMAGE_HEIGHT = 100;
-const float PLAYER_SPEED = 300.0;
+const float PLAYER_SPEED = 600.0;
 
 const char *ENEMY_SHIP_FILENAME = "resources/enemy-ship.png";
 const int ENEMY_IMAGE_X = 0;
 const int ENEMY_IMAGE_Y = 0;
 const int ENEMY_IMAGE_WIDTH = 50;
 const int ENEMY_IMAGE_HEIGHT = 100;
-const int ENEMY_SPEED = 20;
+const int ENEMY_SPEED = 10;
 const int ENEMY_CAPACITY = 50;
 
 bool g_gameIsRunning = true;
@@ -44,10 +45,12 @@ void handleKeyboardInput();
 
 int main(int argc, char *args[])
 {
+    //set array of enemies
     for (int i = 0; i < ENEMY_CAPACITY + 1; i++)
     {
         enemies[i] = new Enemy[ENEMY_CAPACITY + 1];
     }
+
     g_graphics = new SDLGraphics(800, 600, WINDOW_TITLE);
     g_graphics->setBackground("resources/background.png");
     g_input = new Input();
@@ -59,17 +62,39 @@ int main(int argc, char *args[])
                              Point(PLAYER_START_X,PLAYER_START_Y),
                              PLAYER_SPEED, g_input);
 
+    //initialize enemies
     for (int i = 0; i < ENEMY_CAPACITY + 1; i++)
     {
         enemies[i] =  new Enemy(g_graphics,
-                           ENEMY_IMAGE_X, ENEMY_IMAGE_Y,
-                           ENEMY_IMAGE_WIDTH, ENEMY_IMAGE_HEIGHT,
-                           ENEMY_SHIP_FILENAME,
-                           ENEMY_SPEED);
+                                ENEMY_IMAGE_X, ENEMY_IMAGE_Y,
+                                ENEMY_IMAGE_WIDTH, ENEMY_IMAGE_HEIGHT,
+                                ENEMY_SHIP_FILENAME,
+                                ENEMY_SPEED);
     }
-    /*enemies = new Enemy(g_graphics,
-                    ENEMY_IMAGE_X, ENEMY_IMAGE_Y, ENEMY_IMAGE_WIDTH,
-                    ENEMY_IMAGE_HEIGHT, ENEMY_SHIP_FILENAME, ENEMY_SPEED);*/
+
+    //spawn lines of enemies with holes to navigate through
+    for (int i = 0; i <= 50; i++)
+    {
+        if (i != 6 && i != 17 && i != 32 && i != 47)
+        {
+            if (i <= 13)
+            {
+                enemies[i]->setPosition(i * 60, -1300);
+            }
+            else if (i <= 26)
+            {
+                enemies[i]->setPosition((i - 13) * 60, -1700);
+            }
+            else if (i <= 39)
+            {
+                enemies[i]->setPosition((i - 26) * 60, -2100);
+            }
+            else if (i >= 40)
+            {
+                enemies[i]->setPosition((i - 39) * 60, -2500);
+            }
+        }
+    }
 
     g_timer = new Timer();
 
@@ -77,7 +102,6 @@ int main(int argc, char *args[])
     {
         float deltaTime = g_timer->timeSinceLastFrame();
 
-        // Handle input
         g_input->readInput();
 
         if (g_input->windowClosed())
@@ -87,16 +111,15 @@ int main(int argc, char *args[])
 
         handleKeyboardInput();
 
-        // Draw the scene
+        //draw scene
         g_graphics->beginScene();
 
-        // Handle game logic
         player_ship->update(deltaTime);
+
         for (int i = 0; i < ENEMY_CAPACITY + 1; i++)
         {
             enemies[i]->update(deltaTime);
         }
-        //enemies->update(deltaTime);
 
         g_graphics->endScene();
     }

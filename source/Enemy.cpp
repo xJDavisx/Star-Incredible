@@ -102,3 +102,9 @@ void Enemy::draw()
                           eX, eY,
                           eWidth, eHeight);
 }
+
+void Enemy::setPosition(int x, int y)
+{
+    eX = x;
+    eY = y;
+}
