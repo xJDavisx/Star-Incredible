@@ -13,5 +13,6 @@
 #include "Timer.h"
 #include "Enemy.h"
 
+void mainMenu();
 void levelOne();
 void handleKeyboardInput();

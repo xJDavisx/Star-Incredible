@@ -13,11 +13,14 @@
 
 using namespace std;
 
-void handleKeyboardInput();
+void mainMenu();
 void levelOne();
+void handleKeyboardInput();
 
 int main(int argc, char *args[])
 {
+    mainMenu();
+
     levelOne();
 
     return 0;

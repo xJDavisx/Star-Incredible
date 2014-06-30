@@ -1,15 +1,22 @@
 #include "Level.h"
 
+const char *WINDOW_TITLE = "Star Incredible";
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
 bool g_gameIsRunning = true;
 
+SDLGraphics *g_graphics = new SDLGraphics(WINDOW_WIDTH,
+                                          WINDOW_HEIGHT,
+                                          WINDOW_TITLE);
 Input *g_input = new Input();
+
+void mainMenu()
+{
+    std::cout << "Entered mainMenu()" << std::endl;
+}
 
 void levelOne()
 {
-    const char *WINDOW_TITLE = "Star Incredible";
-    const int WINDOW_WIDTH = 800;
-    const int WINDOW_HEIGHT = 600;
-
     const char *PLAYER_SHIP_FILENAME = "resources/player-ship1.png";
     const float PLAYER_START_X = 0;
     const float PLAYER_START_Y = 500;
@@ -27,10 +34,9 @@ void levelOne()
     const int ENEMY_SPEED = 10;
     const int ENEMY_CAPACITY = 50;
 
-    Player *player_ship = NULL;
-    SDLGraphics *g_graphics = NULL;
-    Timer *g_timer = NULL;
-    Enemy *enemies[ENEMY_CAPACITY];
+    Player      *player_ship = NULL;
+    Enemy       *enemies[ENEMY_CAPACITY];
+    Timer       *g_timer = NULL;
 
     //set array of enemies
     for (int i = 0; i < ENEMY_CAPACITY + 1; i++)
@@ -38,7 +44,6 @@ void levelOne()
         enemies[i] = new Enemy[ENEMY_CAPACITY + 1];
     }
 
-    g_graphics = new SDLGraphics(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
     g_graphics->setBackground("resources/background.png");
 
     player_ship = new Player(g_graphics,
@@ -115,7 +120,7 @@ void levelOne()
 
 void handleKeyboardInput()
 {
-    bool* keysHeld = g_input->getInput();
+    bool *keysHeld = g_input->getInput();
 
     if (keysHeld[SDLK_ESCAPE])
     {
