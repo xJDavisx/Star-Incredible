@@ -10,12 +10,20 @@ SDLGraphics *g_graphics = new SDLGraphics(WINDOW_WIDTH,
                                           WINDOW_TITLE);
 Input *g_input = new Input();
 
+const char *BUTTONSTART_FILENAME = "resources/buttonStart.png";
+const float BUTTONSTART_START_X = 0;
+const float BUTTONSTART_START_Y = 500;
+const int BUTTONSTART_IMAGE_X = 0;
+const int BUTTONSTART_IMAGE_Y = 0;
+const int BUTTONSTART_IMAGE_WIDTH = 50;
+const int BUTTONSTART_IMAGE_HEIGHT = 100;
+
 void mainMenu()
 {
     std::cout << "Entered mainMenu()" << std::endl;
 
     g_graphics->setBackground("resources/start-screen.png");
-
+    //startButton = g_graphics->LoadPNG(BUTTONSTART_FILENAME);
     bool exitStartScreen = false;
 
     while (!exitStartScreen)
@@ -36,7 +44,7 @@ void mainMenu()
         }
 
         g_graphics->beginScene();
-
+        //g_graphics->drawSprite(startButton);
         g_graphics->drawText("Start Game", 40, 20, 150, 255, 255, 255);
         g_graphics->drawText("Load Game", 40, 20, 300, 255, 255, 255);
 
