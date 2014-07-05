@@ -36,7 +36,6 @@ SDL_Surface *SDLGraphics::loadPNG(const char *filename)
 
 }
 
-//CHA-CHING!
 void SDLGraphics::setBackground(const char *filename)
 {
     background = loadPNG(filename);
@@ -93,26 +92,24 @@ void SDLGraphics::drawSprite(SDL_Surface *imageSurface,
 
 }
 
-//void SDLGraphics::drawText(const char *string,
-//    int size,
-//    int x, int y,
-//    int fR, int fG, int fB,
-//    int bR, int bG, int bB){
-//
-//    TTF_Font *font = TTF_OpenFont("FreeSerif.ttf", size);
-//
-//    SDL_Color foregroundColor = { fR, fG, fB };
-//    SDL_Color backgroundColor = { bR, bG, bB };
-//
-//    SDL_Surface *textSurface = TTF_RenderText_Shaded(font, string,
-//        foregroundColor, backgroundColor);
-//
-//    SDL_Rect textLocation = { x, y, 0, 0 };
-//
-//    SDL_BlitSurface(textSurface, NULL, m_screen, &textLocation);
-//
-//    SDL_FreeSurface(textSurface);
-//
-//    TTF_CloseFont(font);
-//
-//}
+void SDLGraphics::drawText(const char *string,
+    int size,
+    int x, int y,
+    int R, int G, int B){
+
+    TTF_Font *font = TTF_OpenFont("fonts/DroidSerif.ttf", size);
+
+    SDL_Color textColor = {R, G, B};
+
+    SDL_Surface *textSurface = TTF_RenderText_Blended(font, string,
+        textColor);
+
+    SDL_Rect textLocation = { x, y, 0, 0 };
+
+    SDL_BlitSurface(textSurface, NULL, m_screen, &textLocation);
+
+    SDL_FreeSurface(textSurface);
+
+    TTF_CloseFont(font);
+
+}

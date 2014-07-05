@@ -13,6 +13,35 @@ Input *g_input = new Input();
 void mainMenu()
 {
     std::cout << "Entered mainMenu()" << std::endl;
+
+    g_graphics->setBackground("resources/start-screen.png");
+
+    bool exitStartScreen = false;
+
+    while (!exitStartScreen)
+    {
+        g_input->readInput();
+
+        if (g_input->windowClosed())
+        {
+            exitStartScreen = true;
+            g_gameIsRunning = false;
+        }
+
+        bool *startScreenKeysHeld = g_input->getInput();
+
+        if (startScreenKeysHeld[SDLK_ESCAPE])
+        {
+            exitStartScreen = true;
+        }
+
+        g_graphics->beginScene();
+
+        g_graphics->drawText("Start Game", 40, 20, 150, 255, 255, 255);
+        g_graphics->drawText("Load Game", 40, 20, 300, 255, 255, 255);
+
+        g_graphics->endScene();
+    }
 }
 
 void levelOne()

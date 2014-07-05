@@ -28,11 +28,10 @@ class SDLGraphics
                         int dstX, int dstY,
                         int width, int height);
 
-        /*void drawText(const char *string,
+        void drawText(const char *string,
             int size,
             int x, int y,
-            int fR, int fG, int fB,
-            int bR, int bG, int Bb);*/
+            int R, int G, int B);
 
         void setBackgroundColor(int r, int g, int b);
 
